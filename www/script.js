@@ -350,3 +350,40 @@ $(function () {
 		}
 	});
 });
+
+// Mic button speech recognition
+$(function () {
+    const micBtn = document.getElementById('MicBtn');
+    const chatbox = document.getElementById('chatbox');
+    if (micBtn && 'webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        micBtn.addEventListener('click', function () {
+            recognition.start();
+            micBtn.classList.add('active'); // Optional: add a visual cue
+        });
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            chatbox.value = transcript;
+            recognition.stop();
+            micBtn.classList.remove('active');
+        };
+
+        recognition.onerror = function () {
+            recognition.stop();
+            micBtn.classList.remove('active');
+        };
+
+        recognition.onend = function () {
+            micBtn.classList.remove('active');
+        };
+    } else if (micBtn) {
+        micBtn.addEventListener('click', function () {
+            alert('Speech recognition not supported in this browser.');
+        });
+    }
+});

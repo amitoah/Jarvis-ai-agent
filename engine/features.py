@@ -1,4 +1,5 @@
 import os
+import re
 from playsound import playsound 
 import eel
 from engine.command import speak
@@ -14,18 +15,19 @@ def playAssistantSound():
 def openCommand(query):
     query = query.replace(ASSISTANT_NAME, "")
     query = query.replace("open", "")
-    query.lower()
-
-
-    if query!="":
-        speak("Opening "+query)
-        os.system("start "+query)
+    query = query.lower().strip()
+    if query == "youtube":
+        speak("Opening YouTube")
+        os.system("start https://www.youtube.com")
+    elif query != "":
+        speak("Opening " + query)
+        os.system("start " + query)
     else:
         speak("not found")
 
 def playYoutube(query):
     serch_term = extract_yt_term(query)
-    speak("playing "+serch_term+" on youtube")
+    speak("playing " + str(serch_term) + " on youtube")
     kit.playonyt(serch_term)
 
 def extract_yt_term(command):

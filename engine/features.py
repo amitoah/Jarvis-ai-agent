@@ -2,7 +2,7 @@ import os
 import re
 import webbrowser
 import sqlite3
-from engine.db import cursor, con as conn
+from engine.db import cursor, conn
 # Importing playsound for playing audio files
 from playsound import playsound 
 import eel

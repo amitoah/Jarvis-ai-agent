@@ -21,6 +21,12 @@ def openCommand(query):
     query = query.replace("open", "")
     query = query.lower()
 
+    if query!="":
+        speak("Opening "+query)
+        os.system("start " + query)
+    else:
+        speak("not found")
+    
     
     # if query == "youtube":
     #     speak("Opening YouTube")

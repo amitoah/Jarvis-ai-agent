@@ -18,3 +18,4 @@ cursor.execute(query)
 query = "INSERT INTO web_command (name, url) VALUES ('youtube', 'https://www.youtube.com/');"
 cursor.execute(query)
 conn.commit()
+
